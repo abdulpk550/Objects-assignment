@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Users Grouped by Role</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-top: 24px;
+      padding: 10px;
+      background: #4a90e2;
+      color: white;
+      border-radius: 6px;
+      font-size: 18px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    li {
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 Admin</h2>
+    <ul class="Admin"></ul>>
+      <li>Ali</li>
+      <li>Sara</li>
+    </ul>
+
+    <h2 >Editor</h2>
+    <ul class="Editor">
+      <li>Ahmed</li>
+      <li>Zara</li>
+    </ul>
+
+    <h2 >Viewer</h2>
+    <ul class="Viewer">
+      <li>Bilal</li>
+      <li>Ayesha</li>
+    </ul>
+  </div>
+
+  <script>
+//  Given an array of user objects ({name, role}), group and display users under role
+// headings.
+    const users = [
+      { name: "Ali", role: "Admin" },
+      { name: "Sara", role: "Admin" },
+      { name: "Ahmed", role: "Editor" },
+      { name: "Zara", role: "Editor" },
+      { name: "Bilal", role: "Viewer" },
+      { name: "Ayesha", role: "Viewer" }
+    ];
+    console.log(users);
+  </script>
+</body>
+</html>
