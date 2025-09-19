@@ -29,5 +29,3 @@ for (let i = 0; i < students.length; i++) {
       <p><strong>Name:</strong> ${topStudent.name}</p>
       <p><strong>Score:</strong> ${topStudent.marks}</p>
     `;
-
-   

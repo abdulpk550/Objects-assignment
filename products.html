@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .controls input {
+            padding: 8px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 120px;
+        }
+
+        .controls button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .controls button:hover {
+            background: #0056b3;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 15px;
+            width: 220px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #1a7e1a;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align:center;">Product List</h2>
+
+    <div class="controls">
+        <input type="number" id="minPrice" placeholder="Min Price">
+        <input type="number" id="maxPrice" placeholder="Max Price">
+        <button onclick="filterProducts()">Filter</button>
+    </div>
+
+    <div class="container"></div>
+
+
+    <script>
+        let products = [
+            { name: "Notebook", description: "100-page ruled notebook", price: 150 },
+            { name: "Pen", description: "Smooth ballpoint pen", price: 50 },
+            { name: "Bag", description: "Durable school bag", price: 1200 },
+            { name: "Shoes", description: "Comfortable running shoes", price: 2500 },
+            { name: "Watch", description: "Stylish wrist watch", price: 1800 },
+            { name: "Headphones", description: "Wireless Bluetooth headphones", price: 3000 },
+            { name: "Keyboard", description: "Mechanical gaming keyboard", price: 4500 },
+            { name: "Mouse", description: "Ergonomic wireless mouse", price: 1200 },
+            { name: "Chair", description: "Comfortable office chair", price: 7500 },
+            { name: "Table", description: "Wooden study table", price: 6000 },
+            { name: "Bottle", description: "Stainless steel water bottle", price: 800 },
+            { name: "Calculator", description: "Scientific calculator", price: 2500 },
+            { name: "Earphones", description: "Wired high-quality earphones", price: 900 },
+            { name: "Lamp", description: "Desk lamp with LED light", price: 1600 },
+            { name: "Mobile Cover", description: "Protective mobile case", price: 500 },
+            { name: "Charger", description: "Fast charging adapter", price: 1500 },
+            { name: "Power Bank", description: "10000mAh portable charger", price: 3500 },
+            { name: "Book", description: "Inspirational self-help book", price: 700 },
+            { name: "T-shirt", description: "Casual cotton T-shirt", price: 1200 },
+            { name: "Jeans", description: "Blue denim jeans", price: 2500 }
+        ];
+
+        let container = document.querySelector(".container");
+
+        for (let i = 0; i < products.length; i++) {
+            container.innerHTML += `<div class="card">
+            <h3>${products[i].name}</h3>
+            <p>${products[i].description}</p>
+            <p class="price">Price Rs : ${products[i].price}</p>
+    </div>`
+        }
+
+        function filterProducts() {
+            let min = Number(document.querySelector("#minPrice").value);
+            let max = Number(document.querySelector("#maxPrice").value);
+
+            container.innerHTML = "";
+            let filtered = [];
+
+
+            for (let i = 0; i < products.length; i++) {
+                if (products[i].price >= min && products[i].price <= max) {
+                    filtered.push(products[i]);
+                }
+            }
+
+
+            for (let i = 0; i < filtered.length; i++) {
+                container.innerHTML += `<div class="card">
+                <h3>${filtered[i].name}</h3>
+                <p>${filtered[i].description}</p>
+                <p class="price">Price Rs : ${filtered[i].price}</p>
+            </div>`;
+            }
+
+
+            if (filtered.length === 0) {
+                container.innerHTML = "<p>No products found in this price range.</p>";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
