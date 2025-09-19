@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Word Frequency</title>
+    <style>
+        :root {
+            --bg: #0f1724;
+            --muted: #9aa4b2;
+            --accent: #60a5fa;
+            --radius: 12px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #081126 0%, #071226 60%);
+            color: #e6eef8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            min-height: 100vh;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 960px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            color: #fff;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .btn {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--accent), #3b82f6);
+            color: #06202f;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .results h2 {
+            font-size: 16px;
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .word-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .word-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .word {
+            font-weight: 600;
+        }
+
+        .count {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+        }
+
+        @media(max-width:850px) {
+            .wrap {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <section class="card">
+            <h2>Enter Text</h2>
+            <textarea placeholder="Type or paste your paragraph here..." class="text"></textarea>
+            <button class="btn" onclick="countFrequency()">Count Words</button>
+        </section>
+
+        <aside class="card results">
+            <h2>Word Frequency</h2>
+            <ul class="word-list">
+
+
+
+            </ul>
+        </aside>
+    </main>
+
+    <script>
+
+        let Frequency = document.querySelector(".word-list");
+        let text = document.querySelector(".text");
+
+        function countFrequency() {
+           
+            let splitted = text.value.toLowerCase().split(/\s+/);
+
+            
+            let freq = {};
+
+            
+            for (let i = 0; i < splitted.length; i++) {
+                let word = splitted[i].trim();
+                if (word) {
+                    if (freq[word]) {
+                        freq[word]++;
+                    } else {
+                        freq[word] = 1;
+                    }
+                }
+            }
+
+        
+            Frequency.innerHTML = "";
+
+            
+            for (let word in freq) {
+                Frequency.innerHTML += `
+            <li><span class="word">${word}</span> <span class="count">${freq[word]}</span></li>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
